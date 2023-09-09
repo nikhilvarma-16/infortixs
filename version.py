@@ -1,9 +1,6 @@
-"""
-This module exists only to simplify retrieving the version number of chardet
-from within setuptools and from chardet subpackages.
+from ._importlib import metadata
 
-:author: Dan Blanchard (dan.blanchard@gmail.com)
-"""
-
-__version__ = "5.1.0"
-VERSION = __version__.split(".")
+try:
+    __version__ = metadata.version('setuptools') or '0.dev0+unknown'
+except Exception:
+    __version__ = '0.dev0+unknown'
