@@ -76,20 +76,20 @@ try:
 except ImportError:
     importlib_machinery = None
 
-from pip._internal.utils._jaraco_text import (
+from pkg_resources.extern.jaraco.text import (
     yield_lines,
     drop_comment,
     join_continuation,
 )
 
-from pip._vendor import platformdirs
-from pip._vendor import packaging
+from pkg_resources.extern import platformdirs
+from pkg_resources.extern import packaging
 
-__import__('pip._vendor.packaging.version')
-__import__('pip._vendor.packaging.specifiers')
-__import__('pip._vendor.packaging.requirements')
-__import__('pip._vendor.packaging.markers')
-__import__('pip._vendor.packaging.utils')
+__import__('pkg_resources.extern.packaging.version')
+__import__('pkg_resources.extern.packaging.specifiers')
+__import__('pkg_resources.extern.packaging.requirements')
+__import__('pkg_resources.extern.packaging.markers')
+__import__('pkg_resources.extern.packaging.utils')
 
 if sys.version_info < (3, 5):
     raise RuntimeError("Python 3.5 or later is required")
@@ -119,7 +119,7 @@ warnings.warn(
     "pkg_resources is deprecated as an API. "
     "See https://setuptools.pypa.io/en/latest/pkg_resources.html",
     DeprecationWarning,
-    stacklevel=2
+    stacklevel=2,
 )
 
 
@@ -1418,7 +1418,7 @@ def _forgiving_version(version):
     match = _PEP440_FALLBACK.search(version)
     if match:
         safe = match["safe"]
-        rest = version[len(safe):]
+        rest = version[len(safe) :]
     else:
         safe = "0"
         rest = version
